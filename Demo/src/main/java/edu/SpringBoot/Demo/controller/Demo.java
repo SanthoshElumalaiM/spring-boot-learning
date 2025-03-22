@@ -32,10 +32,25 @@ public class Demo {
 	//it is used to map only getRequest with handler method
 	//PostMapping -It is used to map only postRequest with handler method
 	
+	//@pathVariable -it is used to map with path
 	@GetMapping("fetch/{id}/{name}")
 	public String m4(@PathVariable int id,@PathVariable String name)
 	{
 		return "<h1> Id= "+id+", Name="+name+"</h1>";
 	}
 	
+	
+	@GetMapping("getStudent")
+	public Student m5()
+	{
+		Student s=new Student();
+		
+		s.setId(1);
+		s.setName("Sant");
+		s.setAge(22);
+		s.setMarks(429);
+		
+		return s;
+		
+	}
 }
