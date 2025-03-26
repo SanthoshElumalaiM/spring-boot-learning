@@ -6,6 +6,7 @@ import edu.jsp.Employee_app.entity.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
+	
 	//save(Employee e)
 	//FindById(Long l)
 	//findAll()
