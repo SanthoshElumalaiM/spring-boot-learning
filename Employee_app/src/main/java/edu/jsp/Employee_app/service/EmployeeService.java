@@ -1,5 +1,7 @@
 package edu.jsp.Employee_app.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,16 @@ public class EmployeeService {
 	{
 		return employeeRepository.save(e);
 	}
+	
+	public Employee fetchById(long l)
 
+	{
+		Optional<Employee> o=employeeRepository.findById(l);
+		
+		if(o.isPresent())
+		{
+			return o.get();
+		}
+		return null;
+	}
 }
