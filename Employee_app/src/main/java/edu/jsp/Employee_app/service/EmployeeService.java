@@ -36,4 +36,32 @@ public class EmployeeService {
 		
 		return employeeRepository.findAll();
 	}
+	public String deleteById(long id)
+	{
+		Employee e=fetchById(id);
+		
+		if(e!=null) {
+			employeeRepository.deleteById(id);
+			return "Data deleted";
+		}
+		else {
+			return "date not found";
+		}
+		
+	}
+	public String updateSal(long ld,double sal)
+	{
+		 Employee e=fetchById(ld);
+		 
+		 if(e!=null)
+		 {
+			 e.setSal(sal);
+			 employeeRepository.save(e);
+			 return "data updated";
+		 }
+		 else {
+			 return "data not found";
+			 
+		 }
+	}
 }
