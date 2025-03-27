@@ -20,7 +20,7 @@ public class ProductServie {
 		return  productRepository.save(p);
 	}
 	
-	public Product fectById(long id)
+	public Product fetchById(long id)
 	{
 		Optional<Product> o= productRepository.findById(id);
 		
@@ -34,4 +34,36 @@ public class ProductServie {
 	{
 		return productRepository.findAll();
 	}
+	
+	public String deleteById(long id)
+	{
+		Product p=fetchById(id);
+		
+		if(p!=null)
+		{
+			productRepository.deleteById(id);
+			return "data deleted";
+		}
+		else {
+			return "data not found";
+		}
+	}
+	
+	public String update(long id,double price)
+	{
+		Product p=fetchById(id);
+		if(p!=null)
+		{
+			p.setPrice(price);
+			productRepository.save(p);
+			return "data updated";
+			
+		}
+		else {
+			return "data not found";
+		}
+		
+	}
+	
+	
 }
