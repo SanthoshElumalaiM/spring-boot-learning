@@ -79,4 +79,13 @@ public class ProductServie {
 		return "data not found";
 	}
 	
+	public Product findByName(String name)
+	{
+		return productRepository.findByName(name);
+	}
+	
+	public List<Product> fecthByPrice(double price)
+	{
+		return productRepository.fecthByPrice(price);
+	}
 }
