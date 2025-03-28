@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.jsp.Product_app.Product_app.entity.Product;
 import edu.jsp.Product_app.Product_app.service.ProductServie;
+import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 
 @RestController
 @RequestMapping("/Product")
@@ -53,9 +54,23 @@ public class ProductController {
 		
 	}
 	
-	@PutMapping("upadte/{id}")
+	@PutMapping("update/{id}")
 	public String update(@PathVariable Long id ,@RequestBody Product newProd)
 	{
 		return productServie.update(id, newProd);
 	}
+	
+	@GetMapping("/findByName")
+	public Product findByName(@RequestParam String  name)
+	{
+		return productServie.findByName(name);
+	}
+	
+	@GetMapping("fetchByPrice")
+	public List<Product> fetchByPrice(@RequestParam double  price)
+	{
+		return productServie.fecthByPrice(price);
+	}
 }
+
+
