@@ -64,4 +64,15 @@ public class EmployeeService {
 			 
 		 }
 	}
+	public String update(long id,Employee newEmp)
+	{
+		Employee exEmp =fetchById(id);
+		if(exEmp!=null)
+		{
+			newEmp.setId(id);
+			employeeRepository.save(newEmp);
+			return "data updated";
+		}
+		return  "Data not found";
+	}
 }
