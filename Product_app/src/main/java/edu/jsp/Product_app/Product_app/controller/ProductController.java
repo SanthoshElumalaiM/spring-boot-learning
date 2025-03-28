@@ -29,8 +29,8 @@ public class ProductController {
 		return  productServie.saveProduct(p);
 	}
 	
-	@GetMapping("fetchById")
-	public Product fetchById(long id) {
+	@GetMapping("fetchById/{id}")
+	public Product fetchById(@PathVariable Long id) {
 		return productServie.fetchById(id);
 	}
 	
@@ -42,29 +42,20 @@ public class ProductController {
 	@DeleteMapping("deleteById/{id}")
 	public String deleteById(@PathVariable long  id)
 	{
-		Product p=fetchById(id);
-		if(p!=null)
-		{
-			productServie.deleteById(id);
-			return "data deleted";
-		}
-		else {
-			return "data not found";
-		}
+		return	productServie.deleteById(id);
+			
 	}
 	@PutMapping("updatePrice")
 	public String updatePrice(@RequestParam long id,@RequestParam  double price)
 	{
-		 Product p=fetchById(id);
-		 if(p!=null)
-		 {
-			 p.setPrice(79999);
-			 productServie.update(id, price);
-			 return "data updated";
-		 }
-		 else {
-			 return "data not found";
-		 }
+		 
+		return productServie.updatePrice(id, price);
 		
+	}
+	
+	@PutMapping("upadte/{id}")
+	public String update(@PathVariable Long id ,@RequestBody Product newProd)
+	{
+		return productServie.update(id, newProd);
 	}
 }
