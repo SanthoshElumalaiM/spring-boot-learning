@@ -75,4 +75,14 @@ public class EmployeeService {
 		}
 		return  "Data not found";
 	}
+	
+	public Employee findByName(String name)
+	{
+		return employeeRepository.findByName(name);
+	}
+	
+	public List<Employee> fetchByName(String name)
+	{
+		return employeeRepository.fecthByName(name);
+	}
 }
