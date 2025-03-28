@@ -52,5 +52,11 @@ public class EmployeeController {
 		return employeeService.updateSal(id, sal);
 	}
 	
+	@PutMapping("update/{id}")
+	public String update(@PathVariable Long  id,@RequestBody Employee newEmp)
+	{
+		return employeeService.update(id, newEmp);
+	}
+	
 }
 
