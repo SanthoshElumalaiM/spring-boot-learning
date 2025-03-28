@@ -49,7 +49,7 @@ public class ProductServie {
 		}
 	}
 	
-	public String update(long id,double price)
+	public String updatePrice(long id,double price)
 	{
 		Product p=fetchById(id);
 		if(p!=null)
@@ -65,5 +65,18 @@ public class ProductServie {
 		
 	}
 	
+	public String update(Long id,Product newProd)
+	{
+		Product exProd= fetchById(id);
+		
+		if(exProd!=null)
+		{
+			newProd.setPid(id);
+			productRepository.save(newProd);
+			return "data updated";
+			
+		}
+		return "data not found";
+	}
 	
 }
