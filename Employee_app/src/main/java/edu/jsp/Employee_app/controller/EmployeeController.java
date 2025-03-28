@@ -58,5 +58,16 @@ public class EmployeeController {
 		return employeeService.update(id, newEmp);
 	}
 	
+	@GetMapping("/findByName")
+	public Employee findByName(@RequestParam String name) {
+		return employeeService.findByName(name);
+	}
+	
+	@GetMapping("/fetchByName")
+	public List<Employee> fetchEmployee(@RequestParam String name)
+	{
+		return employeeService.fetchByName(name);
+	}
+	
 }
 
