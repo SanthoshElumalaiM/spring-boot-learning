@@ -6,5 +6,6 @@ import edu.jsp.Product_app.Product_app.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
+	
 
 }
