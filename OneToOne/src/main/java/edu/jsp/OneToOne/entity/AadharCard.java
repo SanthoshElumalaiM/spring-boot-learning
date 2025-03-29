@@ -15,6 +15,7 @@ public class AadharCard {
 	private String address;
 	private String fatherName;
 	private long pincode;
+	
 	public int getAid() {
 		return aid;
 	}
