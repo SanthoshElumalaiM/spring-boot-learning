@@ -19,7 +19,7 @@ public class Person {
 	private long phone;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
+	private AadharCard address;
 
 	public int getId() {
 		return id;
@@ -61,11 +61,11 @@ public class Person {
 		this.phone = phone;
 	}
 
-	public Address getAddress() {
+	public AadharCard getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(AadharCard address) {
 		this.address = address;
 	}
 	
