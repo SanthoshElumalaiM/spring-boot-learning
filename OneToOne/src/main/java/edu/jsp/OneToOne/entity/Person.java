@@ -12,20 +12,20 @@ public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	private String name;
 	private String gender;
-	private String gmail;
-	private long phone;
+	private String email;
+	private String phoneNo;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private AadharCard aadharCard;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -45,20 +45,20 @@ public class Person {
 		this.gender = gender;
 	}
 
-	public String getGmail() {
-		return gmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setGmail(String gmail) {
-		this.gmail = gmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public long getPhone() {
-		return phone;
+	public String getPhoneNo() {
+		return phoneNo;
 	}
 
-	public void setPhone(long phone) {
-		this.phone = phone;
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public AadharCard getAadharCard() {
@@ -68,6 +68,7 @@ public class Person {
 	public void setAadharCard(AadharCard aadharCard) {
 		this.aadharCard = aadharCard;
 	}
+
+	
 	
 }
-
