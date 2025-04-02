@@ -7,32 +7,30 @@ import jakarta.persistence.Id;
 
 @Entity
 public class AadharCard {
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int aid;
-	private String address;
+	private long aid;
 	private String fatherName;
+	private String address;
 	private long pincode;
-	
-	public int getAid() {
+	public long getAid() {
 		return aid;
 	}
-	public void setAid(int aid) {
+	public void setAid(long aid) {
 		this.aid = aid;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public String getFatherName() {
 		return fatherName;
 	}
 	public void setFatherName(String fatherName) {
 		this.fatherName = fatherName;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public long getPincode() {
 		return pincode;
@@ -42,4 +40,6 @@ public class AadharCard {
 	}
 	
 	
+
+
 }
