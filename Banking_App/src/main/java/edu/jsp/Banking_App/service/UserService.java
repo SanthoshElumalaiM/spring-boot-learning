@@ -1,5 +1,6 @@
 package edu.jsp.Banking_App.service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -11,49 +12,45 @@ import edu.jsp.Banking_App.repo.UserRepo;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
-	UserRepo userRepo;
+	private UserRepo userRepo;
 	
-	public User getById(long id)
+	public User getByUserId(long id)
 	{
 		Optional<User> o= userRepo.findById(id);
 		
-		 return o.isPresent()?o.get():null;
+		return o.isPresent()?o.get():null;
 	}
-	
-	
-	public User createNewUser(User user)
-	{
+	public User createNewUser(User user) {
+		
 		return userRepo.save(user);
 	}
-	
-	public User updateUserById(long id,User newUser)
-	{
-		User exUser=getById(id);
+	public User UpdateByUserId(long id,User newUser) {
+		
+		User exUser= getByUserId(id);
 		if(exUser!=null)
-		{
+		{	
 			newUser.setUid(id);
-			return userRepo.save(newUser);
+			 return userRepo.save(newUser);
 		}
 		return null;
-	}
-	
-	public String deleteById(long id)
-	{
-		User u= getById(id);
-		if(u!=null)
-		{
-			userRepo.delete(u);
-			return "data deleted";
-		}
-		return "data not found";
 		
 	}
 	
-	public List<User> getUserByName(String name)
+	public String deleteByUserId(long id)
 	{
-		return userRepo.getUserByName(name);
+		User u= getByUserId(id);
+		if(u!=null)
+		{
+			userRepo.delete(u);
+			return "date deleted";
+		}
+		return "data not found";
 	}
-
+	
+	public List<User> getByUserName(String  name)
+	{
+		return userRepo.getByUserName(name);
+	}
 }
