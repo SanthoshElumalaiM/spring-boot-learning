@@ -8,8 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import edu.jsp.Banking_App.entity.User;
 
-public interface UserRepo extends JpaRepository<User,Long > {
-
+public interface UserRepo extends JpaRepository<User, Long> {
+	
+	
 	@Query(value="select u from User u where u.name like %:name%")
-	List<User> getUserByName(@Param("name") String name);
+	List<User> getByUserName(@Param("name") String name);
+
 }
