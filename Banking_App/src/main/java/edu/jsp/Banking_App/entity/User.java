@@ -1,12 +1,13 @@
 package edu.jsp.Banking_App.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@jakarta.persistence.Entity
-public class User { 
-
+@Entity
+public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long uid;
@@ -37,6 +38,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	
 }
