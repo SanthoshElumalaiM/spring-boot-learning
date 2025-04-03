@@ -15,7 +15,7 @@ public class LoanController {
 	@Autowired
 	private LoanService loanService;
 	
-	public Loan applyLoan(User userId,Loan loan)
+	public Loan applyLoan(Long userId,Loan loan)
 	{
 		
 			return  loanService.applyLoan(userId, loan);
