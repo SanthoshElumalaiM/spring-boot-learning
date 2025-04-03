@@ -1,5 +1,7 @@
 package edu.jsp.Banking_App.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,4 +63,34 @@ public class LoanService {
 		 return "data not found";
 		 
 	}
+	
+	public  Set<Loan> fetchAllLoan(long userId){
+		 User user= userRepo.findById(userId).orElse(null);
+		 return user.getLoans();
+	}
+	
+	public Loan repayLoan(long loanId,double amount)
+	
+	{
+		 Loan loan= getLoanById(loanId);
+		 if(loan!=null)
+		 {
+			 double bal=loan.getBalance();
+			 loan.setBalance(bal-amount);
+			 
+			 return loanRepo.save(loan);
+		 }
+		 return null;
+	}
+	
+	public String loanStatus(long loanId)
+	{
+		Loan loan= getLoanById(loanId);
+		if(loan!=null)
+		{
+			 return loan.getStatus();
+		}
+		return null;
+	}
 }
+
