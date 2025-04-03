@@ -30,5 +30,35 @@ public class LoanService {
 		 }
 		 return null;
 	}
+	
+	public Loan getLoanById(long loanId)
+	{
+		return loanRepo.findById(loanId).orElse(null);
+	}
+	
+	public Loan updateLoan(long loanId,Loan loan)
+	{
+		Loan exLoan= getLoanById(loanId);
+		if(exLoan!=null)
+		{
+			loan.setId(loanId);
+			 return loanRepo.save(loan);
+		}
+		return null;
+	}
 
+	public String deleteLoanById(long userId,long loanId)
+	{
+		 User user= userRepo.findById(userId).orElse(null);
+		 
+		 if(user!=null)
+		 {
+			 Loan loan=getLoanById(loanId);
+			 user.removeLoan(loan);
+			 loanRepo.delete(loan);
+			 return "data deleted";
+		 }
+		 return "data not found";
+		 
+	}
 }
