@@ -3,7 +3,14 @@ package edu.jsp.Banking_App.controller;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.jsp.Banking_App.entity.Loan;
@@ -17,39 +24,46 @@ public class LoanController {
 	@Autowired
 	private LoanService loanService;
 	
-	public Loan applyLoan(Long userId,Loan loan)
+	@PostMapping("/users/{userId}")
+	public Loan applyLoan(@PathVariable Long userId,@RequestBody Loan loan)
 	{
 		
 			return  loanService.applyLoan(userId, loan);
 	}
 	
-	public Loan getLoan(long loanId)
+	@GetMapping("/loans/{loanId}")
+	public Loan getLoan(@PathVariable long loanId)
 	{
 		return loanService.getLoanById(loanId);
 	}
 	
-	public Loan updateLoan(long loanId,Loan loan)
+	@PutMapping("/loans/{loanId}")
+	public Loan updateLoan(@PathVariable long loanId,@RequestBody Loan loan)
 	{
 		return loanService.updateLoan(loanId, loan);
 	}
 	
-	public String deleteById(long userId,long loanId)
+	@DeleteMapping("/users/{userId}/loans/{loanId}")
+	public String deleteLoanById(@PathVariable long userId,@PathVariable long loanId)
 	{
 		return loanService.deleteLoanById(userId, loanId);
 	}
 	
-	public Set<Loan> fetchAllLoan(long userId)
+	@GetMapping("/users/{userId}/loans")
+	public Set<Loan> fetchAllLoan(@PathVariable long userId)
 	{
 		return loanService.fetchAllLoan(userId);
 	}
 	
-	public Loan repayLoan(long loanId,double amount) {
+	@PutMapping("loans/{loanId}/{amount}")
+	public Loan repayLoan(@PathVariable long loanId,@PathVariable double amount) {
 		
 		return loanService.repayLoan(loanId, amount);
 		
 	}
 	
-	public String loanStaus(long loanId)
+	@GetMapping("/loans/status/{loanId}")
+	public String loanStatus(@PathVariable long loanId)
 	{
 		return loanService.loanStatus(loanId);
 	}
