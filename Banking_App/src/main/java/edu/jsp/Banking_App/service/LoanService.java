@@ -44,6 +44,7 @@ public class LoanService {
 		if(exLoan!=null)
 		{
 			loan.setId(loanId);
+			loan.setUser(exLoan.getUser());
 			 return loanRepo.save(loan);
 		}
 		return null;
