@@ -1,13 +1,18 @@
 package edu.jsp.Banking_App.entity;
 
+import java.util.List;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Account {
@@ -22,6 +27,10 @@ public class Account {
 	@JoinColumn
 	@JsonBackReference
 	private User user;
+
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "account")
+	@JsonBackReference
+	private List<Transaction> transactions;
 
 	public long getId() {
 		return id;
@@ -54,8 +63,14 @@ public class Account {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
 
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+	
+	
 }
