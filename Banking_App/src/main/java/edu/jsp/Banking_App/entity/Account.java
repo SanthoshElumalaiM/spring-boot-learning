@@ -32,6 +32,19 @@ public class Account {
 	@JsonBackReference
 	private List<Transaction> transactions;
 
+	
+	public void addTransaction(Transaction transaction)
+	{
+		transactions.add(transaction);
+		transaction.setAccount(this);
+	}
+	
+	public void deleteTransaction(Transaction transaction)
+	{
+		transactions.remove(transaction);
+		transaction.setAccount(null);
+	}
+	
 	public long getId() {
 		return id;
 	}
