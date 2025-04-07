@@ -1,5 +1,6 @@
 package edu.jsp.Banking_App.entity;
 
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -25,6 +26,10 @@ public class User {
 	@JsonBackReference
 	private Set<Loan> loans;
 	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Account> accounts;
+	
 	public void addLoan(Loan loan)
 	{
 		loans.add(loan);
@@ -36,6 +41,13 @@ public class User {
 		loans.remove(loan);
 		loan.setUser(this);
 	}
+	
+	public void addAccount(Account account)
+	{
+		accounts.add(account);
+		account.setUser(this);;;
+	}
+	
 
 	public long getUid() {
 		return uid;
