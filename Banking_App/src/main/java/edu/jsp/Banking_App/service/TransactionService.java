@@ -38,4 +38,8 @@ public class TransactionService {
 		return transactionRepo.findByAccountUserUid(userId);
 	}
 	
+	public List<Transaction> findByAccountUseUidAndAmountBetween(long userId,double start,double end)
+	{
+		return transactionRepo.findByAccountUserUidAndAmountBetween(userId, start, end);
+	}
 }
