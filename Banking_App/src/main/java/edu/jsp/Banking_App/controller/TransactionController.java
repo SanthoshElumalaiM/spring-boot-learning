@@ -29,5 +29,11 @@ public class TransactionController {
 	{
 		return transactionService.getTransactionAsc(userId);
 	}
-
+	
+	@GetMapping("/transactionAmount/{userId}/{start}/{end}")
+	public List<Transaction> findByAccountUserUidAndAmountBetween(@PathVariable long userId,@PathVariable double start,@PathVariable double end)
+	{
+		return transactionService.findByAccountUseUidAndAmountBetween(userId, start, end);
+	}
+ 
 }
