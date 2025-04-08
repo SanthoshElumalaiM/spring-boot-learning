@@ -15,4 +15,7 @@ public interface TransactionRepo extends JpaRepository<Transaction, Long> {
 	
 	@Query("select t from  transaction  t where t.account.user.uid =?1 order by date")
 	List<Transaction> findByAccountUserUid(long userId);
+	
+	List<Transaction> findByAccountUserUidAndAmountBetween(long userId,Double start,double end);
+	
 }
