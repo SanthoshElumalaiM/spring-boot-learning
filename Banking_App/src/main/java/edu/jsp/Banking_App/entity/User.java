@@ -47,7 +47,11 @@ public class User {
 		accounts.add(account);
 		account.setUser(this);;;
 	}
-	
+	public void removeAccont(Account account)
+	{
+		accounts.remove(account);
+		account.setUser(this);
+	}
 
 	public long getUid() {
 		return uid;
