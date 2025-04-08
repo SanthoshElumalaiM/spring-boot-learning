@@ -1,5 +1,7 @@
 package edu.jsp.Banking_App.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class TransactionService {
 			return transaction;
 		}
 		return null;
+	}
+	
+	public List<Transaction> getTransactionAsc(long userId)
+	{
+		return transactionRepo.findByAccountUserUid(userId);
 	}
 	
 }
