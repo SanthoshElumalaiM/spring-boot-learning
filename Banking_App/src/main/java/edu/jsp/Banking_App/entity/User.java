@@ -27,7 +27,7 @@ public class User {
 	private Set<Loan> loans;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
 	private List<Account> accounts;
 	
 	public void addLoan(Loan loan)
