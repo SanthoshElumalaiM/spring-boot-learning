@@ -80,8 +80,8 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/findByName")
-	public Employee findByName(@RequestParam String name) {
-		return employeeService.findByName(name);
+	public ResponseEntity<Employee> findByName(@RequestParam String name) {
+		return new ResponseEntity<Employee>(employeeService.findByName(name), HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/fetchByName")
