@@ -85,9 +85,9 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/fetchByName")
-	public List<Employee> fetchEmployee(@RequestParam String name)
+	public ResponseEntity<List<Employee>>  fetchEmployee(@RequestParam String name)
 	{
-		return employeeService.fetchByName(name);
+		return new ResponseEntity<List<Employee>>( employeeService.fetchByName(name), HttpStatus.OK);
 	}
 	
 }
