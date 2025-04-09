@@ -3,6 +3,9 @@ package edu.jsp.Employee_app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,38 +27,56 @@ public class EmployeeController {
 	 EmployeeService employeeService;
 	
 	@PostMapping("save")
-	public Employee saveEmployee(@RequestBody Employee e)
+	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee e)
 	{
-		return employeeService.saveEmployee(e); 
+		Employee data= employeeService.saveEmployee(e); 
+		return new ResponseEntity<Employee>(data, HttpStatus.OK);
 	}
 	
 	@GetMapping("fetchById")
-	public Employee fetchById(@RequestParam long id)
+	public ResponseEntity<Employee> fetchById(@RequestParam long id)
 	{
-		return employeeService.fetchById(id);
+		Employee data= employeeService.fetchById(id);
+		
+		return new ResponseEntity<Employee>(data, HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("fetchAll")
-	public List<Employee> fetchAll() {
-		return employeeService.fetchAll();
+	public ResponseEntity<List<Employee>> fetchAll() {
+		List<Employee> data= employeeService.fetchAll();
+		if(data!=null)
+		{
+			return new ResponseEntity<List<Employee>>(data, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<List<Employee>>( HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@DeleteMapping("deleteById/{id}")
-	public String deleteById(@PathVariable long id)
+	public ResponseEntity<String> deleteById(@PathVariable long id)
 	{
-		return employeeService.deleteById(id);
+		String data= employeeService.deleteById(id);
+		if(data!=null)
+		{	
+			return new ResponseEntity<String>(data, HttpStatus.OK);
+			
+		}
+		else {
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PutMapping("updateSal")
-	public String updateById(@RequestParam long id,@RequestParam double sal)
+	public ResponseEntity<String> updateById(@RequestParam long id,@RequestParam double sal)
 	{
-		return employeeService.updateSal(id, sal);
+		return  new ResponseEntity<String>(employeeService.updateSal(id, sal), HttpStatus.OK) ;
 	}
 	
 	@PutMapping("update/{id}")
-	public String update(@PathVariable Long  id,@RequestBody Employee newEmp)
+	public ResponseEntity<String> update(@PathVariable Long  id,@RequestBody Employee newEmp)
 	{
-		return employeeService.update(id, newEmp);
+		return new ResponseEntity<String>( employeeService.update(id, newEmp), HttpStatus.OK) ;
 	}
 	
 	@GetMapping("/findByName")
